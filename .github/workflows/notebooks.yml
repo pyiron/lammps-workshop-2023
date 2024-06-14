@@ -19,6 +19,16 @@ jobs:
         python-version: "3.10"
         environment-file: .binder/environment.yml
         auto-activate-base: false
+    - name: Prepare Environment
+      shell: bash -l {0}
+      run: |
+        python .github/ci_support/pyironconfig.py
+        bash .binder/postBuild
+        bash .github/ci_support/import_dataset.sh
+        conda install -y -c conda-forge papermill
     - name: Tests
       shell: bash -l {0}
-      run: flux start ./.github/ci_support/build_notebooks.sh
+      run: |
+        papermill part_1.ipynb part_1_out.ipynb -k "flux"
+        papermill part_2.ipynb part_2_out.ipynb -k "flux"
+        papermill part_3.ipynb part_3_out.ipynb -k "flux"
