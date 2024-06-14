@@ -23,12 +23,11 @@ jobs:
       shell: bash -l {0}
       run: |
         python .github/ci_support/pyironconfig.py
-        bash .binder/postBuild
         bash .github/ci_support/import_dataset.sh
         conda install -y -c conda-forge papermill
     - name: Tests
       shell: bash -l {0}
       run: |
-        papermill part_1.ipynb part_1_out.ipynb -k "flux"
-        papermill part_2.ipynb part_2_out.ipynb -k "flux"
-        papermill part_3.ipynb part_3_out.ipynb -k "flux"
+        flux start papermill part_1.ipynb part_1_out.ipynb -k "python3"
+        flux start papermill part_2.ipynb part_2_out.ipynb -k "python3"
+        flux start papermill part_3.ipynb part_3_out.ipynb -k "python3"
