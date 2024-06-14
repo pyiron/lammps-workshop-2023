@@ -21,4 +21,4 @@ jobs:
         auto-activate-base: false
     - name: Tests
       shell: bash -l {0}
-      run: ./.github/ci_support/build_notebooks.sh
+      run: flux start ./.github/ci_support/build_notebooks.sh
