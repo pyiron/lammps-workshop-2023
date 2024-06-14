@@ -2,6 +2,9 @@
 # pyiron config 
 python .github/ci_support/pyironconfig.py
 
+# run postBuild
+bash .binder/postBuild
+
 # import dataset
 bash .github/ci_support/import_dataset.sh
 
